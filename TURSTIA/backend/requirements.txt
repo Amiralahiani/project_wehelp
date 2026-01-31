@@ -9,4 +9,5 @@ python-jose
 sentence_transformers
 passlib
 pymongo
-"pydantic[email]"
+pydantic[email]
+python-dotenv

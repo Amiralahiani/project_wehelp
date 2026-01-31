@@ -1,6 +1,17 @@
+import os
+from pathlib import Path
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
-MONGO_URI = "mongodb+srv://trustia_admin:acYKnOSliVwUq0wm@trustia.a1cns83.mongodb.net/?appName=TRUSTIA"
+# Load env from backend/.env if present
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+
+MONGO_URI = os.getenv("MONGO_URL")
+DB_NAME = os.getenv("DB_NAME", "biocup")
+
+if not MONGO_URI:
+    raise RuntimeError("MONGO_URL is not set")
+
 client = MongoClient(MONGO_URI)
-db = client["trustia_auth"]
+db = client[DB_NAME]
 users_collection = db["users"]

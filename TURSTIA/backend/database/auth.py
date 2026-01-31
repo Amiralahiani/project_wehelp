@@ -1,3 +1,4 @@
+import secrets
 from fastapi import APIRouter, HTTPException
 from passlib.context import CryptContext
 from jose import jwt
@@ -33,3 +34,16 @@ def login(user: UserLogin):
 
     token = jwt.encode({"sub": user.email}, JWT_SECRET, algorithm=JWT_ALGORITHM)
     return {"access_token": token}
+
+# Utility endpoint: create a test user quickly
+@router.post("/create-test-user")
+def create_test_user():
+    email = f"codex.user+{secrets.token_hex(4)}@example.com"
+    password = f"Trustia!{secrets.token_hex(4)}"
+
+    users_collection.insert_one({
+        "email": email,
+        "password": hash_password(password)
+    })
+
+    return {"email": email, "password": password}
