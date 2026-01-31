@@ -11,7 +11,7 @@
     <!-- 1️⃣ MÉTADONNÉES DE L'INTERACTION -->
     <section class="form-section">
       <h2>1️⃣ Métadonnées de l'Interaction</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Canal de contact *</label>
@@ -22,7 +22,7 @@
             <option value="PHYSICAL_MEETING">👤 Rendez-vous physique</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Durée de l'échange (minutes)</label>
           <input type="number" [(ngModel)]="formData.interaction_metadata!.duration_minutes" name="duration" min="0">
@@ -38,13 +38,14 @@
     <!-- 2️⃣ IDENTIFICATION DU CLIENT -->
     <section class="form-section">
       <h2>2️⃣ Identification du Client</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Nom / Prénom</label>
-          <input type="text" [(ngModel)]="formData.client_identity!.full_name" name="full_name" placeholder="Confidentiel">
+          <input type="text" [(ngModel)]="formData.client_identity!.full_name" name="full_name"
+            placeholder="Confidentiel">
         </div>
-        
+
         <div class="form-group">
           <label>Âge *</label>
           <input type="number" [(ngModel)]="formData.client_identity!.age" name="age" min="18" max="100" required>
@@ -60,7 +61,7 @@
             <option value="NEW">Nouveau client</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Fréquence des interactions *</label>
           <select [(ngModel)]="formData.client_identity!.interaction_frequency" name="interaction_freq" required>
@@ -73,14 +74,15 @@
 
       <div class="form-group">
         <label>Ancienneté bancaire (années)</label>
-        <input type="number" [(ngModel)]="formData.client_identity!.banking_seniority_years" name="seniority" min="0" step="0.5">
+        <input type="number" [(ngModel)]="formData.client_identity!.banking_seniority_years" name="seniority" min="0"
+          step="0.5">
       </div>
     </section>
 
     <!-- 3️⃣ SITUATION PERSONNELLE & FAMILIALE -->
     <section class="form-section">
       <h2>3️⃣ Situation Personnelle & Familiale</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Situation matrimoniale *</label>
@@ -91,17 +93,18 @@
             <option value="WIDOWED">Veuf(ve)</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Nombre de personnes à charge *</label>
-          <input type="number" [(ngModel)]="formData.personal_situation!.dependents_count" name="dependents" min="0" required>
+          <input type="number" [(ngModel)]="formData.personal_situation!.dependents_count" name="dependents" min="0"
+            required>
         </div>
       </div>
 
       <div class="form-group checkbox-group">
         <label>
-          <input type="checkbox" [(ngModel)]="formData.personal_situation!.spouse_exists" 
-                 name="spouse_exists" (change)="onSpouseExistsChange()">
+          <input type="checkbox" [(ngModel)]="formData.personal_situation!.spouse_exists" name="spouse_exists"
+            (change)="onSpouseExistsChange()">
           Conjoint existant
         </label>
       </div>
@@ -117,10 +120,11 @@
               <option value="UNEMPLOYED">Sans emploi</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label>Revenu mensuel du conjoint (€)</label>
-            <input type="number" [(ngModel)]="formData.personal_situation!.spouse_info!.monthly_income" name="spouse_income" min="0">
+            <input type="number" [(ngModel)]="formData.personal_situation!.spouse_info!.monthly_income"
+              name="spouse_income" min="0">
           </div>
         </div>
       </div>
@@ -129,7 +133,7 @@
     <!-- 4️⃣ SITUATION PROFESSIONNELLE DU CLIENT -->
     <section class="form-section">
       <h2>4️⃣ Situation Professionnelle du Client</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Statut professionnel *</label>
@@ -141,7 +145,7 @@
             <option value="UNEMPLOYED">Sans emploi</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Secteur d'activité</label>
           <input type="text" [(ngModel)]="formData.professional_situation!.sector" name="sector">
@@ -151,9 +155,10 @@
       <div class="form-row">
         <div class="form-group">
           <label>Ancienneté professionnelle (années)</label>
-          <input type="number" [(ngModel)]="formData.professional_situation!.seniority_years" name="prof_seniority" min="0" step="0.5">
+          <input type="number" [(ngModel)]="formData.professional_situation!.seniority_years" name="prof_seniority"
+            min="0" step="0.5">
         </div>
-        
+
         <div class="form-group">
           <label>Stabilité professionnelle *</label>
           <select [(ngModel)]="formData.professional_situation!.stability" name="stability" required>
@@ -168,46 +173,45 @@
     <!-- 5️⃣ SITUATION FINANCIÈRE -->
     <section class="form-section">
       <h2>5️⃣ Situation Financière</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Revenu mensuel net (€) *</label>
-          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_income_net" 
-                 name="income" min="0" required (change)="calculateDebtRatio()">
+          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_income_net" name="income" min="0"
+            required (change)="calculateDebtRatio()">
         </div>
-        
+
         <div class="form-group">
           <label>Charges mensuelles fixes (€) *</label>
-          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_fixed_expenses" 
-                 name="expenses" min="0" required>
+          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_fixed_expenses" name="expenses"
+            min="0" required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label>Crédits en cours - Montant total (€)</label>
-          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_total" 
-                 name="credits_total" min="0">
+          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_total" name="credits_total"
+            min="0">
         </div>
-        
+
         <div class="form-group">
           <label>Mensualités cumulées (€)</label>
-          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_monthly_payment" 
-                 name="credits_monthly" min="0" (change)="calculateDebtRatio()">
+          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_monthly_payment"
+            name="credits_monthly" min="0" (change)="calculateDebtRatio()">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label>Taux d'endettement (%)</label>
-          <input type="number" [value]="(formData.financial_situation!.debt_ratio || 0) * 100" 
-                 readonly disabled class="readonly">
+          <input type="number" [value]="(formData.financial_situation!.debt_ratio || 0) * 100" readonly disabled
+            class="readonly">
         </div>
-        
+
         <div class="form-group">
           <label>Épargne disponible (€)</label>
-          <input type="number" [(ngModel)]="formData.financial_situation!.available_savings" 
-                 name="savings" min="0">
+          <input type="number" [(ngModel)]="formData.financial_situation!.available_savings" name="savings" min="0">
         </div>
       </div>
 
@@ -224,7 +228,7 @@
     <!-- 6️⃣ DEMANDE DE CRÉDIT -->
     <section class="form-section">
       <h2>6️⃣ Demande de Crédit</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Type de crédit *</label>
@@ -235,7 +239,7 @@
             <option value="PROFESSIONAL">Professionnel</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Objet du crédit *</label>
           <select [(ngModel)]="formData.credit_request!.purpose" name="purpose" required>
@@ -249,14 +253,13 @@
       <div class="form-row">
         <div class="form-group">
           <label>Montant demandé (€) *</label>
-          <input type="number" [(ngModel)]="formData.credit_request!.amount_requested" 
-                 name="amount" min="0" required>
+          <input type="number" [(ngModel)]="formData.credit_request!.amount_requested" name="amount" min="0" required>
         </div>
-        
+
         <div class="form-group">
           <label>Durée souhaitée (mois) *</label>
-          <input type="number" [(ngModel)]="formData.credit_request!.duration_months" 
-                 name="duration_months" min="1" required>
+          <input type="number" [(ngModel)]="formData.credit_request!.duration_months" name="duration_months" min="1"
+            required>
         </div>
       </div>
     </section>
@@ -265,13 +268,13 @@
     <section class="form-section">
       <h2>7️⃣ Indicateurs Comportementaux</h2>
       <p class="section-note">Observations structurées par l'agent</p>
-      
+
       <div class="form-group">
         <label>Niveau de stress (1=Très calme, 5=Très stressé) *</label>
         <div class="radio-group">
           <label *ngFor="let i of [1,2,3,4,5]">
-            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.stress_level" 
-                   [value]="i" name="stress" required> {{i}}
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.stress_level" [value]="i" name="stress"
+              required> {{i}}
           </label>
         </div>
       </div>
@@ -280,8 +283,8 @@
         <label>Niveau d'urgence (1=Non urgent, 5=Extrêmement urgent) *</label>
         <div class="radio-group">
           <label *ngFor="let i of [1,2,3,4,5]">
-            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.urgency_level" 
-                   [value]="i" name="urgency" required> {{i}}
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.urgency_level" [value]="i" name="urgency"
+              required> {{i}}
           </label>
         </div>
       </div>
@@ -290,8 +293,8 @@
         <label>Clarté du projet (1=Très flou, 5=Très structuré) *</label>
         <div class="radio-group">
           <label *ngFor="let i of [1,2,3,4,5]">
-            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.project_clarity" 
-                   [value]="i" name="clarity" required> {{i}}
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.project_clarity" [value]="i" name="clarity"
+              required> {{i}}
           </label>
         </div>
       </div>
@@ -300,8 +303,8 @@
         <label>Engagement perçu (1=Faible, 5=Très élevé) *</label>
         <div class="radio-group">
           <label *ngFor="let i of [1,2,3,4,5]">
-            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.engagement_level" 
-                   [value]="i" name="engagement" required> {{i}}
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.engagement_level" [value]="i"
+              name="engagement" required> {{i}}
           </label>
         </div>
       </div>
@@ -319,7 +322,7 @@
     <!-- 8️⃣ INTENTION RÉELLE DU CLIENT -->
     <section class="form-section">
       <h2>8️⃣ Intention Réelle du Client</h2>
-      
+
       <div class="form-row">
         <div class="form-group">
           <label>Motivation principale *</label>
@@ -329,7 +332,7 @@
             <option value="EXTERNAL_PRESSURE">Pression externe</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Capacité de projection *</label>
           <select [(ngModel)]="formData.real_intention!.projection_capacity" name="projection" required>
@@ -345,7 +348,7 @@
     <section class="form-section">
       <h2>9️⃣ Risques Identifiés</h2>
       <p class="section-note">Checklist agent</p>
-      
+
       <div class="checkbox-list">
         <label>
           <input type="checkbox" [(ngModel)]="formData.risk_checklist!.professional_instability" name="risk1">
@@ -374,10 +377,19 @@
       </div>
     </section>
 
-    <!-- 🔟 SYNTHÈSE STRUCTURÉE – IA READY -->
+    <!-- 🔟 PIÈCES JUSTIFICATIVES (Pour Qdrant/RAG) -->
     <section class="form-section">
-      <h2>🔟 Synthèse Structurée – IA Ready</h2>
-      
+      <h2>🔟 Pièces Justificatives (RAG Pipeline)</h2>
+      <p class="section-note">Documents pour l'analyse de similarité et l'audit</p>
+
+      <app-document-upload [submitted]="submitting" (documentsChange)="onDocumentsUpdate($event)">
+      </app-document-upload>
+    </section>
+
+    <!-- 1️⃣1️⃣ SYNTHÈSE STRUCTURÉE – IA READY -->
+    <section class="form-section">
+      <h2>1️⃣1️⃣ Synthèse Structurée – IA Ready</h2>
+
       <div class="form-row">
         <div class="form-group">
           <label>Profil de risque global *</label>
@@ -387,7 +399,7 @@
             <option value="HIGH">Élevé</option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label>Capacité théorique de remboursement *</label>
           <select [(ngModel)]="formData.synthesis!.theoretical_repayment_capacity" name="repayment" required>
@@ -417,7 +429,47 @@
   <!-- Result Display -->
   <div class="result-display" *ngIf="result">
     <h2>✅ Résultat de l'Évaluation</h2>
-    <div class="result-content">
+
+    <div class="result-summary" *ngIf="result.evaluation_result">
+      <div class="decision-main-badge" [attr.data-decision]="result.evaluation_result.final_decision">
+        {{ result.evaluation_result.final_decision }}
+      </div>
+      <div class="manual-review-badge" *ngIf="result.evaluation_result.mode === 'MANUAL_REVIEW_REQUIRED'">
+        ⚠️ EXAMEN MANUEL REQUIS
+      </div>
+      <p class="reason">{{ result.evaluation_result.reason }}</p>
+    </div>
+
+    <app-risk-comparison-panel *ngIf="result.evaluation_result?.risk_comparison"
+      [riskComparison]="result.evaluation_result.risk_comparison">
+    </app-risk-comparison-panel>
+
+    <!-- 📊 EXTRACTION DOCUMENTAIRE (Signaux OCR) -->
+    <div class="ocr-results" *ngIf="result.evaluation_result?.document_signals?.documents_count > 0">
+      <h3>🔍 Vérification Documentaire (Signaux OCR)</h3>
+      <div class="signals-grid">
+        <div class="signal-card" *ngIf="result.evaluation_result.document_signals.detected_income">
+          <span class="label">Revenu détecté:</span>
+          <span class="value">{{ result.evaluation_result.document_signals.detected_income |
+            currency:'EUR':'symbol':'1.0-0' }}</span>
+        </div>
+        <div class="signal-card" *ngIf="result.evaluation_result.document_signals.employment_type">
+          <span class="label">Type d'emploi:</span>
+          <span class="value">{{ result.evaluation_result.document_signals.employment_type }}</span>
+        </div>
+        <div class="signal-card" *ngIf="result.evaluation_result.document_signals.sector">
+          <span class="label">Secteur:</span>
+          <span class="value">{{ result.evaluation_result.document_signals.sector }}</span>
+        </div>
+        <div class="signal-card" *ngIf="result.evaluation_result.document_signals.late_payments">
+          <span class="label" style="color: #e11d48;">Incidents détectés:</span>
+          <span class="value" style="color: #e11d48;">{{ result.evaluation_result.document_signals.late_payments
+            }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-content" *ngIf="!result.evaluation_result?.risk_comparison">
       <pre>{{ result | json }}</pre>
     </div>
     <button class="btn-primary" (click)="resetForm()">

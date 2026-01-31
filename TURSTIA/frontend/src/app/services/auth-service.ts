@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   api = 'http://localhost:8000/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(data:any){
+  login(data: any) {
     return this.http.post(`${this.api}/login`, data);
+  }
+
+  register(data: any) {
+    return this.http.post(`${this.api}/register`, data);
   }
 
   getToken(): string | null {

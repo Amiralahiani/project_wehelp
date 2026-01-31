@@ -21,7 +21,7 @@
 .form-header h1 {
   font-size: 2rem;
   margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .subtitle {
@@ -200,7 +200,8 @@ form {
   border-top: 2px solid #e9ecef;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 15px 40px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -278,4 +279,128 @@ form {
   word-wrap: break-word;
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+/* Result Styles */
+.result-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.decision-main-badge {
+  font-size: 2.5rem;
+  font-weight: 800;
+  padding: 20px 60px;
+  border-radius: 60px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  letter-spacing: 2px;
+}
+
+.decision-main-badge[data-decision="ACCEPT"] {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.decision-main-badge[data-decision="REJECT"] {
+  background: linear-gradient(135deg, #f44336, #c62828);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.decision-main-badge[data-decision="MANUAL_REVIEW"] {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.manual-review-badge {
+  background: #ff9800;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+.reason {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  text-align: center;
+  max-width: 800px;
+  margin: 0;
+}
+
+/* OCR Results */
+.ocr-results {
+  margin-top: 30px;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.ocr-results h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #0f172a;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.signals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.signal-card {
+  padding: 12px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signal-card .label {
+  font-size: 0.75rem;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.signal-card .value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
 }

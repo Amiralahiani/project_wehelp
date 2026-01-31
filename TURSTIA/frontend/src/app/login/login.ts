@@ -16,7 +16,9 @@ export class Login {
 
   loginForm: FormGroup;
   showPassword = false;
+  isRegisterMode = false;
   errorMsg = '';
+  successMsg = '';
 
   constructor(
     private fb: FormBuilder,
@@ -33,17 +35,37 @@ export class Login {
     this.showPassword = !this.showPassword;
   }
 
+  toggleMode(event: any) {
+    event.preventDefault();
+    this.isRegisterMode = !this.isRegisterMode;
+    this.errorMsg = '';
+    this.successMsg = '';
+  }
+
   submit() {
     if (this.loginForm.invalid) return;
 
-    this.auth.login(this.loginForm.value).subscribe({
-      next: (res: any) => {
-        this.auth.saveToken(res.access_token);
-        this.router.navigate(['/submission']); 
-      },
-      error: (err) => {
-        this.errorMsg = 'Email ou mot de passe incorrect';
-      }
-    });
+    if (this.isRegisterMode) {
+      this.auth.register(this.loginForm.value).subscribe({
+        next: (res: any) => {
+          this.successMsg = 'Compte créé avec succès ! Connectez-vous.';
+          this.isRegisterMode = false;
+          this.errorMsg = '';
+        },
+        error: (err) => {
+          this.errorMsg = err.error?.detail || 'Erreur lors de la création du compte';
+        }
+      });
+    } else {
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (res: any) => {
+          this.auth.saveToken(res.access_token);
+          this.router.navigate(['/expanded-submission']);
+        },
+        error: (err) => {
+          this.errorMsg = 'Email ou mot de passe incorrect';
+        }
+      });
+    }
   }
 }

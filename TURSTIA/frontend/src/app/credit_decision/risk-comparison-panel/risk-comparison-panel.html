@@ -1,0 +1,72 @@
+<mat-card class="comparison-card" *ngIf="riskComparison">
+    <mat-card-header>
+        <mat-card-title>
+            <mat-icon>compare</mat-icon>
+            Comparaison Triple Expertise (Risque)
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="experts-grid">
+            <!-- Heuristic -->
+            <div class="expert-card">
+                <div class="expert-header">
+                    <mat-icon>rule</mat-icon>
+                    <h3>Expert Métier</h3>
+                </div>
+                <div class="score-display">
+                    <span class="score">{{ riskComparison.heuristic.risk_score | percent:'1.0-1' }}</span>
+                    <span class="label" [style.color]="getScoreColor(riskComparison.heuristic.risk_score)">
+                        {{ getRiskLevelLabel(riskComparison.heuristic.risk_score) }}
+                    </span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" [style.width.%]="riskComparison.heuristic.risk_score * 100"
+                        [style.background-color]="getScoreColor(riskComparison.heuristic.risk_score)">
+                    </div>
+                </div>
+                <p class="description">Basé sur les seuils d'endettement et la stabilité professionnelle.</p>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="expert-card highlight">
+                <div class="expert-header">
+                    <mat-icon>psychology</mat-icon>
+                    <h3>Expert Data (ML)</h3>
+                </div>
+                <div class="score-display">
+                    <span class="score">{{ riskComparison.ml.ml_risk_score | percent:'1.0-1' }}</span>
+                    <span class="label" [style.color]="getScoreColor(riskComparison.ml.ml_risk_score)">
+                        {{ getRiskLevelLabel(riskComparison.ml.ml_risk_score) }}
+                    </span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" [style.width.%]="riskComparison.ml.ml_risk_score * 100"
+                        [style.background-color]="getScoreColor(riskComparison.ml.ml_risk_score)">
+                    </div>
+                </div>
+                <p class="description">Prediction par Random Forest sur l'ensemble des variables.</p>
+            </div>
+
+            <!-- Embedding / Similarity -->
+            <div class="expert-card">
+                <div class="expert-header">
+                    <mat-icon>hub</mat-icon>
+                    <h3>Expert Historique</h3>
+                </div>
+                <div class="score-display">
+                    <span class="score">{{ riskComparison.embedding.embedding_risk_score | percent:'1.0-1' }}</span>
+                    <span class="label" [style.color]="getScoreColor(riskComparison.embedding.embedding_risk_score)">
+                        {{ getRiskLevelLabel(riskComparison.embedding.embedding_risk_score) }}
+                    </span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" [style.width.%]="riskComparison.embedding.embedding_risk_score * 100"
+                        [style.background-color]="getScoreColor(riskComparison.embedding.embedding_risk_score)">
+                    </div>
+                </div>
+                <p class="description">Taux de défaut observé sur les dossiers similaires (Qdrant).</p>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

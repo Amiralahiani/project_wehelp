@@ -4,12 +4,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ExpandedApplicationPackage } from '../../../core/models/expanded-application.model';
+import { ExpandedApplicationPackage, DocumentRef } from '../../../core/models/expanded-application.model';
+import { RiskComparisonPanel } from '../../../credit_decision/risk-comparison-panel/risk-comparison-panel';
+import { DocumentUploadComponent } from '../document-upload.component/document-upload.component';
 
 @Component({
     selector: 'app-expanded-submission',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, RiskComparisonPanel, DocumentUploadComponent],
     templateUrl: './expanded-submission.component.html',
     styleUrls: ['./expanded-submission.component.css']
 })
@@ -101,6 +103,15 @@ export class ExpandedSubmissionComponent {
         if (income > 0) {
             this.formData.financial_situation!.debt_ratio = debt / income;
         }
+    }
+
+    onDocumentsUpdate(docs: any[]) {
+        this.formData.documents = docs.map(d => ({
+            doc_id: d.doc_id,
+            type: d.type,
+            uri: d.filename || d.uri,
+            content: d.content // base64
+        }));
     }
 
     onSubmit() {

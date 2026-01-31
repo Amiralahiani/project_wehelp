@@ -1,6 +1,7 @@
-header{
+header {
   margin-bottom: 20px;
 }
+
 .navbar {
   height: 64px;
   display: flex;
@@ -8,7 +9,7 @@ header{
   justify-content: space-between;
   padding: 0 32px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.92) 100%);
-  box-shadow: 
+  box-shadow:
     0 4px 20px rgba(15, 23, 42, 0.08),
     0 1px 4px rgba(15, 23, 42, 0.06);
   backdrop-filter: blur(12px);
@@ -77,17 +78,19 @@ header{
   transform: translateY(0);
 }
 
-/* Logout button - style différent */
-.nav-right button.logout {
-  background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+/* Logout and Highlight button - style différent */
+.nav-right button.logout,
+.nav-right button.btn-highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-color: transparent;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
-.nav-right button.logout:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #4a56c0 100%);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+.nav-right button.logout:hover,
+.nav-right button.btn-highlight:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 4px 16px rgba(118, 75, 162, 0.4);
   transform: translateY(-2px);
 }
 
@@ -98,25 +101,25 @@ header{
   .navbar {
     padding: 0 16px;
   }
-  
+
   .nav-right {
     gap: 8px;
   }
-  
+
   .nav-right button {
     padding: 0 12px;
     font-size: 13px;
     height: 36px;
   }
-  
+
   .nav-left .logo {
     height: 36px;
   }
-  
+
   .footer {
     padding: 0 16px;
   }
-  
+
   .footer p {
     font-size: 12px;
   }
@@ -130,24 +133,24 @@ header{
     padding: 12px 16px;
     gap: 12px;
   }
-  
+
   .nav-left {
     width: 100%;
     justify-content: center;
   }
-  
+
   .nav-right {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
   }
-  
+
   .nav-right button {
     flex: 1 1 calc(50% - 4px);
     min-width: 120px;
   }
-  
+
   .nav-right button.logout {
     flex: 1 1 100%;
   }

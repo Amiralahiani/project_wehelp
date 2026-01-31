@@ -1,26 +1,17 @@
-
-<app-final-decision-card
-  *ngIf="decisionResult"
-  [decision]="decisionResult">
+<app-final-decision-card *ngIf="decisionResult" [decision]="decisionResult">
 </app-final-decision-card>
 
-<app-risk-factors-panel
-  *ngIf="decisionResult?.risk_summary"
-  [riskSummary]="decisionResult.risk_summary">
+<app-risk-comparison-panel *ngIf="decisionResult?.risk_comparison" [riskComparison]="decisionResult.risk_comparison">
+</app-risk-comparison-panel>
+
+<app-risk-factors-panel *ngIf="decisionResult?.risk_summary" [riskSummary]="decisionResult.risk_summary">
 </app-risk-factors-panel>
 
-<app-scenario-simulator-table
-  *ngIf="decisionResult?.scenario_table"
-  [scenarios]="decisionResult.scenario_table">
+<app-scenario-simulator-table *ngIf="decisionResult?.scenario_table" [scenarios]="decisionResult.scenario_table">
 </app-scenario-simulator-table>
 
-<app-conditions-list
-  *ngIf="decisionResult?.conditions"
-  [conditions]="decisionResult.conditions">
+<app-conditions-list *ngIf="decisionResult?.conditions" [conditions]="decisionResult.conditions">
 </app-conditions-list>
 
-<app-similarity-radar
-  *ngIf="radarPoints.length"
-  [radarPoints]="radarPoints">
+<app-similarity-radar *ngIf="radarPoints.length" [radarPoints]="radarPoints">
 </app-similarity-radar>
-

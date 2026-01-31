@@ -85,6 +85,7 @@ export interface DocumentRef {
     doc_id: string;
     type: string;
     uri: string;
+    content?: string; // Base64
 }
 
 export interface ExpandedApplicationPackage {

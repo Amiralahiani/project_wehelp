@@ -1,5 +1,5 @@
 <div class="login-container">
-  <h2>Connexion</h2>
+  <h2>{{ isRegisterMode ? 'Inscription' : 'Connexion' }}</h2>
 
   <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
@@ -9,22 +9,23 @@
     </div>
 
     <div class="password-field">
-        <label>Mot de passe</label>
-        <input
-            [type]="showPassword ? 'text' : 'password'"
-            formControlName="password"
-        />
+      <label>Mot de passe</label>
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" />
 
-        <mat-icon
-            class="toggle-password"
-            (click)="togglePassword()">
-            {{ showPassword ? 'visibility_off' : 'visibility' }}
-        </mat-icon>
+      <mat-icon class="toggle-password" (click)="togglePassword()">
+        {{ showPassword ? 'visibility_off' : 'visibility' }}
+      </mat-icon>
     </div>
 
-    <button type="submit">Se connecter</button>
+    <button type="submit">{{ isRegisterMode ? "S'inscrire" : 'Se connecter' }}</button>
+
+    <div class="auth-actions">
+      <p *ngIf="!isRegisterMode">Pas encore de compte ? <a href="#" (click)="toggleMode($event)">S'inscrire</a></p>
+      <p *ngIf="isRegisterMode">Déjà un compte ? <a href="#" (click)="toggleMode($event)">Se connecter</a></p>
+    </div>
 
     <p style="color:red" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <p style="color:green" *ngIf="successMsg">{{ successMsg }}</p>
 
   </form>
 </div>
