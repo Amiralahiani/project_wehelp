@@ -35,7 +35,7 @@ export class Login {
     this.showPassword = !this.showPassword;
   }
 
-  toggleMode(event: any) {
+  toggleMode(event: Event) {
     event.preventDefault();
     this.isRegisterMode = !this.isRegisterMode;
     this.errorMsg = '';
