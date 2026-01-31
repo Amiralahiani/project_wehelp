@@ -1,0 +1,40 @@
+<div class="form-card">
+  <div class="form-title">Required Documents</div>
+
+  <!-- ID Card Upload -->
+  <div class="upload-box" (click)="idInput.click()">
+    <div class="upload-icon">🆔</div>
+    <p>Click or drag to upload ID Card</p>
+    <input #idInput type="file" hidden accept=".pdf,.jpg,.jpeg,.png"
+           (change)="onFileSelected($event, 'ID_CARD')" />
+  </div>
+
+  <!-- Bank Statement Upload -->
+  <div class="upload-box" style="margin-top:16px;" (click)="bankInput.click()">
+    <div class="upload-icon">🏦</div>
+    <p>Click or drag to upload Bank Statement</p>
+    <input #bankInput type="file" hidden accept=".pdf"
+           (change)="onFileSelected($event, 'BANK_STATEMENT')" />
+  </div>
+
+  <!-- Contract Upload -->
+  <div class="upload-box" style="margin-top:16px;" (click)="contractInput.click()">
+    <div class="upload-icon">📄</div>
+    <p>Click or drag to upload Contract</p>
+    <input #contractInput type="file" hidden accept=".pdf"
+           (change)="onFileSelected($event, 'CONTRACT')" />
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="submitted && documents.length === 0" class="error-text">
+    Please upload at least one ID document.
+  </div>
+
+  <!-- Uploaded documents list -->
+  <div *ngIf="documents.length > 0" class="uploaded-docs" style="margin-top:20px;">
+    <div *ngFor="let doc of documents; let i = index" class="audit-event uploaded-item">
+      <div>{{ doc.type }}</div>
+      <button type="button" class="btn-secondary" (click)="removeFile(i)">Remove</button>
+    </div>
+  </div>
+</div>

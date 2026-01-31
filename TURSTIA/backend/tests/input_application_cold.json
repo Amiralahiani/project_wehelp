@@ -1,0 +1,15 @@
+{
+  "applicant_id": "COLD001",
+  "name": "Charlie Nguyen",
+  "employment_type": "Freelance",
+  "sector": "Art",
+  "monthly_income": 900,
+  "monthly_expenses": 650,
+  "debt_ratio": 0.72,
+  "late_payments": 1,
+  "other_loans_count": 0,
+  "loan_amount": 5000,
+  "term_months": 12,
+  "product": "Personal Loan",
+  "new_customer": true
+}

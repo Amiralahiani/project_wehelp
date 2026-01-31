@@ -1,0 +1,108 @@
+:host {
+  display: block;
+  padding: 32px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(102,126,234,0.12), transparent 55%),
+              radial-gradient(900px 500px at 90% 10%, rgba(118,75,162,0.10), transparent 55%),
+              linear-gradient(180deg, #f7f8fb 0%, #f3f5f9 100%);
+}
+
+.form-card {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 26px 28px 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.form-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.success-box {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-box h2 {
+  color: #16a34a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.success-box p {
+  margin-top: 8px;
+  color: rgba(15,23,42,0.7);
+}
+
+button.btn-primary {
+  background: #667eea !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+
+button.btn-secondary {
+  border-radius: 10px !important;
+}
+
+.error-text {
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1.5px solid #e53935 !important;
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* 👉 bouton à droite */
+  margin-top: 28px;
+}
+
+.run-btn {
+  height: 50px;             
+  padding: 0 28px;    
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+
+  background: transparent;
+  color: #667eea;        
+  border: 2px solid #667eea; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Effet hover moderne */
+.run-btn:hover {
+  background: #667eea;
+  color: white;
+  box-shadow: 0 6px 18px rgba(102,126,234,0.35);
+  transform: translateY(-2px);
+}

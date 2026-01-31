@@ -1,0 +1,24 @@
+<!-- <div *ngIf="conditions?.length">
+  <h3>Conditions</h3>
+  <ul>
+    <li *ngFor="let cond of conditions">{{ cond }}</li>
+  </ul>
+</div>
+ -->
+
+<mat-card class="conditions-card" *ngIf="conditions?.length">
+  <mat-card-title>
+    <mat-icon color="primary">rule</mat-icon>
+    Conditions de décision
+  </mat-card-title>
+  <mat-card-subtitle>
+    Règles qui ont conduit à la décision finale
+  </mat-card-subtitle>
+
+  <div class="conditions-list">
+    <div class="condition-item" *ngFor="let cond of conditions; let i = index">
+      <div class="condition-number">{{ i + 1 }}</div>
+      <div class="condition-text">{{ cond }}</div>
+    </div>
+  </div>
+</mat-card>

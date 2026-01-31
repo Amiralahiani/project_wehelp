@@ -1,0 +1,14 @@
+{
+  "applicant_id": "NORM001",
+  "name": "Alice Dupont",
+  "employment_type": "Salaried",
+  "sector": "IT",
+  "monthly_income": 3500,
+  "monthly_expenses": 1500,
+  "debt_ratio": 0.43,
+  "late_payments": 0,
+  "other_loans_count": 1,
+  "loan_amount": 10000,
+  "term_months": 24,
+  "product": "Personal Loan"
+}

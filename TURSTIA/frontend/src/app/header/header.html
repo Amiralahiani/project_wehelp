@@ -1,0 +1,16 @@
+<header class="navbar">
+
+  <!-- LEFT LINKS -->
+  <div class="nav-left">
+    <img src="assets/logo.jpg" alt="Logo" class="logo" />
+  </div>
+
+  <!-- RIGHT LOGO + LOGOUT -->
+  <div class="nav-right">
+    <button (click)="go('/audit')">Audit Logs</button>
+    <button (click)="go('/outcome')">Update Outcome</button>
+    <button (click)="go('/submission')">New Case</button>
+    <button class="logout" (click)="logout()">Logout</button>
+  </div>
+
+</header>

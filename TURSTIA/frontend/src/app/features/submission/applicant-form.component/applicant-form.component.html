@@ -1,0 +1,68 @@
+<div class="form-card">
+  <div class="form-title">Applicant Information</div>
+
+  <form [formGroup]="form" class="form-grid">
+
+    <div class="form-group">
+      <label>CIN</label>
+      <input type="number" placeholder="e.g. 12345678" formControlName="cin" />
+      <div *ngIf="isInvalid('cin')" class="error-text">
+        CIN is required and must be 8 digits.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input type="number" placeholder="e.g. 30" formControlName="age" />
+      <div *ngIf="isInvalid('age')" class="error-text">
+        Age must be at least 18.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Employment Type</label>
+      <select formControlName="employment_type">
+        <option value="">Choose...</option>
+        <option value="Employee">Employee</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Unemployed">Unemployed</option>
+      </select>
+      <div *ngIf="isInvalid('employment_type')" class="error-text">
+        Please select employment type.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Monthly Income</label>
+      <input type="number" formControlName="monthly_income_declared" />
+      <div *ngIf="isInvalid('monthly_income_declared')" class="error-text">
+        Must be positive.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Monthly Expenses</label>
+      <input type="number" formControlName="monthly_expenses_declared" />
+      <div *ngIf="isInvalid('monthly_expenses_declared')" class="error-text">
+        Must be positive.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Sector</label>
+      <input type="text" placeholder="Technology" formControlName="sector" />
+      <div *ngIf="isInvalid('sector')" class="error-text">
+        Sector is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Late Payments</label>
+      <input type="number" formControlName="late_payments_declared" />
+      <div *ngIf="isInvalid('late_payments_declared')" class="error-text">
+        Cannot be negative.
+      </div>
+    </div>
+
+  </form>
+</div>

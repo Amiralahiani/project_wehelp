@@ -1,0 +1,32 @@
+<!-- <div *ngIf="riskSummary">
+  <h3>Facteurs de risque</h3>
+
+  <p><strong>Niveau :</strong> {{ riskSummary.risk_level }}</p>
+  <p><strong>Probabilité de défaut :</strong> {{ riskSummary.default_probability }}</p>
+
+  <ul *ngIf="riskSummary.risk_factors?.length">
+    <li *ngFor="let factor of riskSummary.risk_factors">
+      {{ factor }}
+    </li>
+  </ul>
+</div> -->
+
+
+<mat-card class="risk-factors-card" *ngIf="riskSummary">
+  <mat-card-title>
+    <mat-icon color="warn">warning_amber</mat-icon>
+    Facteurs de risque identifiés
+  </mat-card-title>
+  <mat-card-subtitle>
+    Éléments ayant le plus d'impact sur l'évaluation du risque
+  </mat-card-subtitle>
+
+  <div class="risk-list">
+    <div class="risk-item" *ngFor="let factor of riskSummary.risk_factors; let i = index">
+      <div class="risk-level-badge" [ngClass]="getRiskLevelClass(factor)">
+        {{ getRiskLevelLabel(factor) || 'Risque moyen' }}
+      </div>
+      <div class="risk-text">{{ factor }}</div>
+    </div>
+  </div>
+</mat-card>

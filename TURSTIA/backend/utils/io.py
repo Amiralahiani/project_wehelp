@@ -1,0 +1,1 @@
+# chargement image/texte depuis uri

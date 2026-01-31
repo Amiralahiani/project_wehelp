@@ -1,0 +1,40 @@
+
+
+<mat-card class="scenario-table-card" *ngIf="scenarios?.length">
+  <mat-card-title>
+    <mat-icon color="primary">table_chart</mat-icon>
+    Simulation de scénarios
+  </mat-card-title>
+  <mat-card-subtitle>
+    Comparaison des cas similaires et pertes attendues
+  </mat-card-subtitle>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Scénario</th>
+          <th>Cas similaires</th>
+          <th>Taux défaut observé</th>
+          <th>Perte moyenne si défaut</th>
+          <th>Perte attendue</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of scenarios">
+          <td class="scenario-name">{{ row.scenario }}</td>
+          <td class="number">{{ row.similar_cases }}</td>
+          <td class="percent">{{ row.observed_default_rate | percent:'1.1-1' }}</td>
+          <td class="currency">{{ row.avg_loss_if_default | currency:'TND ':'symbol':'1.0-0' }}</td>
+          <td class="currency expected">{{ row.expected_loss | currency:'TND ':'symbol':'1.0-0' }}</td>
+          <td>
+            <span class="verdict-badge" [ngClass]="getVerdictClass(row.verdict)">
+              {{ row.verdict | uppercase }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-card>

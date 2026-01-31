@@ -1,0 +1,74 @@
+.risk-factors-card {
+  max-width: 920px;
+  margin: 32px auto;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09);
+  border: 1px solid rgba(239,68,68,0.12);
+  position: relative;
+}
+
+.risk-factors-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.risk-factors-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.risk-factors-card mat-card-title mat-icon {
+  background: linear-gradient(145deg, rgba(239,68,68,0.16), rgba(239,68,68,0.06));
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+  display: grid;
+  place-items: center;
+  color: #ef4444;
+}
+
+.risk-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
+  background: rgba(254, 242, 242, 0.45);
+  border-radius: 14px;
+  border: 1px solid rgba(239,68,68,0.14);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.risk-item:hover {
+  background: white;
+  border-color: rgba(239,68,68,0.32);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(239,68,68,0.11);
+}
+
+.risk-level-badge {
+  min-width: 118px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.risk-level-badge.high    { background: linear-gradient(135deg, #ef4444, #f87171); }
+.risk-level-badge.medium  { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+.risk-level-badge.low     { background: linear-gradient(135deg, #10b981, #34d399); }

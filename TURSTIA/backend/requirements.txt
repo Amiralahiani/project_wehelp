@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pdfplumber
+fpdf
+python-multipart
+qdrant-client
+
+python-jose
+sentence_transformers
+passlib
+pymongo
+"pydantic[email]"

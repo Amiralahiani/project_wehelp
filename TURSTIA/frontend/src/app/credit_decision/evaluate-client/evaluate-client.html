@@ -1,0 +1,52 @@
+<h2>Évaluer un client</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label>
+    Revenu mensuel:
+    <input type="number" [(ngModel)]="clientProfile.monthly_income" name="monthly_income">
+  </label>
+  <br>
+
+  <label>
+    Dépenses mensuelles:
+    <input type="number" [(ngModel)]="clientProfile.monthly_expenses" name="monthly_expenses">
+  </label>
+  <br>
+
+  <label>
+    Ratio de dette:
+    <input type="number" step="0.01" [(ngModel)]="clientProfile.debt_ratio" name="debt_ratio">
+  </label>
+  <br>
+
+  <label>
+    Stabilité de l'emploi:
+    <input type="number" step="0.01" [(ngModel)]="clientProfile.job_stability" name="job_stability">
+  </label>
+  <br>
+
+  <label>
+    Similarité (top_similarity):
+    <input type="number" step="0.01" [(ngModel)]="clientProfile.top_similarity" name="top_similarity">
+  </label>
+  <br>
+
+  <button type="submit">Évaluer</button>
+</form>
+
+<div *ngIf="loading">Chargement...</div>
+
+<div *ngIf="result">
+  <h3>Résultats du risque :</h3>
+  <app-risk-factors-panel [riskFactors]="result.risk.risk_factors"></app-risk-factors-panel>
+
+  <h3>Scénarios :</h3>
+  <app-scenario-simulator-table [table]="result.scenario.scenario_table"></app-scenario-simulator-table>
+
+  <h3>Décision finale :</h3>
+  <app-final-decision-card [decision]="result.decision"></app-final-decision-card>
+
+  <h3>Conditions :</h3>
+ <app-conditions-list [conditions]="result?.decision?.conditions || []"></app-conditions-list>
+
+</div>

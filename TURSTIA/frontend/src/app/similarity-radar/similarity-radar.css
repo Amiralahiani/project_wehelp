@@ -1,0 +1,200 @@
+
+
+ /* ===============================================
+   SIMILARITY RADAR — EXPLAINABLE AI DESIGN
+   =============================================== */
+
+/* Container global */
+:host {
+  display: block;
+  margin-top: 20px;
+}
+
+/* Card Radar */
+.radar-card {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 22px 22px 26px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Liseré premium */
+.radar-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 45%, #667eea 100%);
+  opacity: 0.9;
+}
+
+/* Titre */
+.radar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.radar-title mat-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(102, 126, 234, 0.14),
+    rgba(102, 126, 234, 0.06)
+  );
+}
+
+/* Sous-titre */
+.radar-subtitle {
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+/* Zone SVG */
+.radar-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* SVG */
+.radar-svg {
+  background: radial-gradient(
+    600px 300px at 50% 50%,
+    rgba(102, 126, 234, 0.05),
+    transparent 60%
+  );
+  border-radius: 16px;
+}
+
+/* Cercles de distance */
+.radar-svg circle[stroke="#ddd"] {
+  stroke-dasharray: 4 4;
+  opacity: 0.7;
+}
+
+/* Points */
+.radar-svg circle {
+  transition:
+    r 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease;
+  cursor: pointer;
+}
+
+/* Hover points */
+.radar-svg circle:hover {
+  r: 10;
+  opacity: 0.95;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #0f172a;
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.14),
+    0 2px 8px rgba(15, 23, 42, 0.08);
+  pointer-events: none;
+  z-index: 20;
+  min-width: 160px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.tooltip strong {
+  font-weight: 700;
+  color: #334155;
+}
+
+.tooltip em {
+  font-style: normal;
+  font-weight: 600;
+  color: #667eea;
+}
+
+/* Tooltip animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Legend */
+.radar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-current {
+  background: #2ecc71;
+}
+
+.legend-normal {
+  background: #3498db;
+}
+
+.legend-fraud {
+  background: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .radar-card {
+    padding: 18px 16px 22px;
+    border-radius: 16px;
+  }
+
+  .radar-title {
+    font-size: 16px;
+  }
+
+  .radar-title mat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+}

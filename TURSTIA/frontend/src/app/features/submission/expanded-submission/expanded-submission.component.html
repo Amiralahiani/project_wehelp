@@ -1,0 +1,427 @@
+<!-- frontend/src/app/features/submission/expanded-submission/expanded-submission.component.html -->
+
+<div class="container">
+  <div class="form-header">
+    <h1>🏦 Formulaire de Débriefing – Demande de Crédit</h1>
+    <p class="subtitle">Rempli automatiquement + complété et validé par l'agent</p>
+  </div>
+
+  <form #extendedForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!result">
+
+    <!-- 1️⃣ MÉTADONNÉES DE L'INTERACTION -->
+    <section class="form-section">
+      <h2>1️⃣ Métadonnées de l'Interaction</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Canal de contact *</label>
+          <select [(ngModel)]="formData.interaction_metadata!.contact_channel" name="contact_channel" required>
+            <option value="PHONE_CALL">☎️ Appel téléphonique</option>
+            <option value="EMAIL">📧 Email</option>
+            <option value="SMS_WHATSAPP">💬 SMS / WhatsApp</option>
+            <option value="PHYSICAL_MEETING">👤 Rendez-vous physique</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Durée de l'échange (minutes)</label>
+          <input type="number" [(ngModel)]="formData.interaction_metadata!.duration_minutes" name="duration" min="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Agent responsable</label>
+        <input type="text" [(ngModel)]="formData.interaction_metadata!.agent_responsible" name="agent">
+      </div>
+    </section>
+
+    <!-- 2️⃣ IDENTIFICATION DU CLIENT -->
+    <section class="form-section">
+      <h2>2️⃣ Identification du Client</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom / Prénom</label>
+          <input type="text" [(ngModel)]="formData.client_identity!.full_name" name="full_name" placeholder="Confidentiel">
+        </div>
+        
+        <div class="form-group">
+          <label>Âge *</label>
+          <input type="number" [(ngModel)]="formData.client_identity!.age" name="age" min="18" max="100" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Statut client *</label>
+          <select [(ngModel)]="formData.client_identity!.client_status" name="client_status" required>
+            <option value="REGULAR">Client régulier</option>
+            <option value="OCCASIONAL">Client occasionnel</option>
+            <option value="NEW">Nouveau client</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Fréquence des interactions *</label>
+          <select [(ngModel)]="formData.client_identity!.interaction_frequency" name="interaction_freq" required>
+            <option value="RARE">Rare</option>
+            <option value="MEDIUM">Moyenne</option>
+            <option value="FREQUENT">Fréquente</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ancienneté bancaire (années)</label>
+        <input type="number" [(ngModel)]="formData.client_identity!.banking_seniority_years" name="seniority" min="0" step="0.5">
+      </div>
+    </section>
+
+    <!-- 3️⃣ SITUATION PERSONNELLE & FAMILIALE -->
+    <section class="form-section">
+      <h2>3️⃣ Situation Personnelle & Familiale</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Situation matrimoniale *</label>
+          <select [(ngModel)]="formData.personal_situation!.marital_status" name="marital_status" required>
+            <option value="SINGLE">Célibataire</option>
+            <option value="MARRIED">Marié(e)</option>
+            <option value="DIVORCED">Divorcé(e)</option>
+            <option value="WIDOWED">Veuf(ve)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Nombre de personnes à charge *</label>
+          <input type="number" [(ngModel)]="formData.personal_situation!.dependents_count" name="dependents" min="0" required>
+        </div>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.personal_situation!.spouse_exists" 
+                 name="spouse_exists" (change)="onSpouseExistsChange()">
+          Conjoint existant
+        </label>
+      </div>
+
+      <div *ngIf="formData.personal_situation!.spouse_exists" class="subsection">
+        <h3>Informations du conjoint</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Statut professionnel du conjoint *</label>
+            <select [(ngModel)]="formData.personal_situation!.spouse_info!.professional_status" name="spouse_status">
+              <option value="EMPLOYED">Employé</option>
+              <option value="SELF_EMPLOYED">Indépendant</option>
+              <option value="UNEMPLOYED">Sans emploi</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Revenu mensuel du conjoint (€)</label>
+            <input type="number" [(ngModel)]="formData.personal_situation!.spouse_info!.monthly_income" name="spouse_income" min="0">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4️⃣ SITUATION PROFESSIONNELLE DU CLIENT -->
+    <section class="form-section">
+      <h2>4️⃣ Situation Professionnelle du Client</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Statut professionnel *</label>
+          <select [(ngModel)]="formData.professional_situation!.professional_status" name="prof_status" required>
+            <option value="EMPLOYEE_CDI">Salarié CDI</option>
+            <option value="EMPLOYEE_CDD">Salarié CDD</option>
+            <option value="SELF_EMPLOYED">Indépendant</option>
+            <option value="ENTREPRENEUR">Entrepreneur</option>
+            <option value="UNEMPLOYED">Sans emploi</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Secteur d'activité</label>
+          <input type="text" [(ngModel)]="formData.professional_situation!.sector" name="sector">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ancienneté professionnelle (années)</label>
+          <input type="number" [(ngModel)]="formData.professional_situation!.seniority_years" name="prof_seniority" min="0" step="0.5">
+        </div>
+        
+        <div class="form-group">
+          <label>Stabilité professionnelle *</label>
+          <select [(ngModel)]="formData.professional_situation!.stability" name="stability" required>
+            <option value="LOW">Faible</option>
+            <option value="MEDIUM">Moyenne</option>
+            <option value="HIGH">Élevée</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5️⃣ SITUATION FINANCIÈRE -->
+    <section class="form-section">
+      <h2>5️⃣ Situation Financière</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Revenu mensuel net (€) *</label>
+          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_income_net" 
+                 name="income" min="0" required (change)="calculateDebtRatio()">
+        </div>
+        
+        <div class="form-group">
+          <label>Charges mensuelles fixes (€) *</label>
+          <input type="number" [(ngModel)]="formData.financial_situation!.monthly_fixed_expenses" 
+                 name="expenses" min="0" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Crédits en cours - Montant total (€)</label>
+          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_total" 
+                 name="credits_total" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label>Mensualités cumulées (€)</label>
+          <input type="number" [(ngModel)]="formData.financial_situation!.existing_credits_monthly_payment" 
+                 name="credits_monthly" min="0" (change)="calculateDebtRatio()">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Taux d'endettement (%)</label>
+          <input type="number" [value]="(formData.financial_situation!.debt_ratio || 0) * 100" 
+                 readonly disabled class="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>Épargne disponible (€)</label>
+          <input type="number" [(ngModel)]="formData.financial_situation!.available_savings" 
+                 name="savings" min="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Historique bancaire *</label>
+        <select [(ngModel)]="formData.financial_situation!.banking_history" name="banking_history" required>
+          <option value="NO_INCIDENT">Aucun incident</option>
+          <option value="MINOR_INCIDENTS">Incidents mineurs</option>
+          <option value="MAJOR_INCIDENTS">Incidents majeurs</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 6️⃣ DEMANDE DE CRÉDIT -->
+    <section class="form-section">
+      <h2>6️⃣ Demande de Crédit</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Type de crédit *</label>
+          <select [(ngModel)]="formData.credit_request!.credit_type" name="credit_type" required>
+            <option value="REAL_ESTATE">Immobilier</option>
+            <option value="PERSONAL">Personnel</option>
+            <option value="AUTO">Auto</option>
+            <option value="PROFESSIONAL">Professionnel</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Objet du crédit *</label>
+          <select [(ngModel)]="formData.credit_request!.purpose" name="purpose" required>
+            <option value="INVESTMENT">Investissement</option>
+            <option value="NECESSARY_EXPENSE">Dépense nécessaire</option>
+            <option value="COMFORT_EXPENSE">Dépense de confort</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Montant demandé (€) *</label>
+          <input type="number" [(ngModel)]="formData.credit_request!.amount_requested" 
+                 name="amount" min="0" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Durée souhaitée (mois) *</label>
+          <input type="number" [(ngModel)]="formData.credit_request!.duration_months" 
+                 name="duration_months" min="1" required>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7️⃣ INDICATEURS COMPORTEMENTAUX -->
+    <section class="form-section">
+      <h2>7️⃣ Indicateurs Comportementaux</h2>
+      <p class="section-note">Observations structurées par l'agent</p>
+      
+      <div class="form-group">
+        <label>Niveau de stress (1=Très calme, 5=Très stressé) *</label>
+        <div class="radio-group">
+          <label *ngFor="let i of [1,2,3,4,5]">
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.stress_level" 
+                   [value]="i" name="stress" required> {{i}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Niveau d'urgence (1=Non urgent, 5=Extrêmement urgent) *</label>
+        <div class="radio-group">
+          <label *ngFor="let i of [1,2,3,4,5]">
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.urgency_level" 
+                   [value]="i" name="urgency" required> {{i}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Clarté du projet (1=Très flou, 5=Très structuré) *</label>
+        <div class="radio-group">
+          <label *ngFor="let i of [1,2,3,4,5]">
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.project_clarity" 
+                   [value]="i" name="clarity" required> {{i}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Engagement perçu (1=Faible, 5=Très élevé) *</label>
+        <div class="radio-group">
+          <label *ngFor="let i of [1,2,3,4,5]">
+            <input type="radio" [(ngModel)]="formData.behavioral_indicators!.engagement_level" 
+                   [value]="i" name="engagement" required> {{i}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Cohérence discours ↔ situation *</label>
+        <select [(ngModel)]="formData.behavioral_indicators!.discourse_coherence" name="coherence" required>
+          <option value="LOW">Faible</option>
+          <option value="MEDIUM">Moyenne</option>
+          <option value="HIGH">Élevée</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 8️⃣ INTENTION RÉELLE DU CLIENT -->
+    <section class="form-section">
+      <h2>8️⃣ Intention Réelle du Client</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Motivation principale *</label>
+          <select [(ngModel)]="formData.real_intention!.main_motivation" name="motivation" required>
+            <option value="NECESSITY">Nécessité</option>
+            <option value="OPPORTUNITY">Opportunité</option>
+            <option value="EXTERNAL_PRESSURE">Pression externe</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Capacité de projection *</label>
+          <select [(ngModel)]="formData.real_intention!.projection_capacity" name="projection" required>
+            <option value="SHORT_TERM_ONLY">Court terme uniquement</option>
+            <option value="MEDIUM_TERM">Moyen terme</option>
+            <option value="LONG_TERM">Long terme</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9️⃣ RISQUES IDENTIFIÉS -->
+    <section class="form-section">
+      <h2>9️⃣ Risques Identifiés</h2>
+      <p class="section-note">Checklist agent</p>
+      
+      <div class="checkbox-list">
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.professional_instability" name="risk1">
+          Instabilité professionnelle
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.high_debt" name="risk2">
+          Endettement élevé
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.spouse_income_dependency" name="risk3">
+          Dépendance au revenu du conjoint
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.non_priority_project" name="risk4">
+          Projet non prioritaire
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.excessive_urgency" name="risk5">
+          Urgence excessive
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="formData.risk_checklist!.incoherent_discourse" name="risk6">
+          Discours incohérent
+        </label>
+      </div>
+    </section>
+
+    <!-- 🔟 SYNTHÈSE STRUCTURÉE – IA READY -->
+    <section class="form-section">
+      <h2>🔟 Synthèse Structurée – IA Ready</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>Profil de risque global *</label>
+          <select [(ngModel)]="formData.synthesis!.global_risk_profile" name="risk_profile" required>
+            <option value="LOW">Faible</option>
+            <option value="MEDIUM">Moyen</option>
+            <option value="HIGH">Élevé</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Capacité théorique de remboursement *</label>
+          <select [(ngModel)]="formData.synthesis!.theoretical_repayment_capacity" name="repayment" required>
+            <option value="INSUFFICIENT">Insuffisante</option>
+            <option value="ACCEPTABLE">Acceptable</option>
+            <option value="SOLID">Solide</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="!extendedForm.valid || submitting">
+        {{ submitting ? '⏳ Traitement en cours...' : '✅ Soumettre la demande' }}
+      </button>
+      <button type="button" class="btn-secondary" (click)="resetForm()" *ngIf="!submitting">
+        🔄 Réinitialiser
+      </button>
+    </div>
+
+    <div class="error-message" *ngIf="error">
+      ❌ {{ error }}
+    </div>
+  </form>
+
+  <!-- Result Display -->
+  <div class="result-display" *ngIf="result">
+    <h2>✅ Résultat de l'Évaluation</h2>
+    <div class="result-content">
+      <pre>{{ result | json }}</pre>
+    </div>
+    <button class="btn-primary" (click)="resetForm()">
+      ➕ Nouvelle demande
+    </button>
+  </div>
+</div>

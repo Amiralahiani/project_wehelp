@@ -1,0 +1,69 @@
+
+<mat-card class="outcome-card">
+  <mat-card-title>
+    <mat-icon color="primary">history</mat-icon>
+    Update Loan Outcome
+  </mat-card-title>
+  <mat-card-subtitle>
+    Feed the real outcome back into the system
+  </mat-card-subtitle>
+
+  <form [formGroup]="outcomeForm">
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Case ID</mat-label>
+        <input matInput formControlName="case_id">
+        <mat-error *ngIf="outcomeForm.get('case_id')?.invalid && outcomeForm.get('case_id')?.touched">
+            Case ID is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Outcome</mat-label>
+        <mat-select formControlName="outcome" (selectionChange)="onOutcomeChange()">
+            <mat-option value="REPAID">REPAID</mat-option>
+            <mat-option value="DEFAULT">DEFAULT</mat-option>
+        </mat-select>
+        <mat-error *ngIf="outcomeForm.get('outcome')?.invalid && outcomeForm.get('outcome')?.touched">
+            Outcome is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+        *ngIf="outcomeForm.get('outcome')?.value === 'DEFAULT'"
+            appearance="outline"
+            class="full-width">
+      <mat-label>Loss Amount</mat-label>
+      <input matInput type="number" formControlName="loss_amount">
+    </mat-form-field>
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="loading"
+        class="submit-btn">
+
+        <mat-icon *ngIf="!loading">save</mat-icon>
+        <mat-icon *ngIf="loading">hourglass_top</mat-icon>
+
+        {{ loading ? 'Updating...' : 'Update Memory' }}
+    </button>
+
+
+  </form>
+</mat-card>
+
+<div  class="Audit">
+  <div style="margin-top: 12px;">
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="goToAudit()"
+    >
+      <mat-icon>fact_check</mat-icon>
+      View Audit
+    </button>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+{
+  "applicant_id": "FRAUD001",
+  "name": "Bob Martin",
+  "employment_type": "Freelance",
+  "sector": "Construction",
+  "monthly_income": 2000,
+  "monthly_expenses": 1800,
+  "debt_ratio": 0.90,
+  "late_payments": 5,
+  "other_loans_count": 3,
+  "loan_amount": 15000,
+  "term_months": 36,
+  "product": "Business Loan",
+  "suspicious_documents": true,
+  "previous_fraud_alerts": 1
+}

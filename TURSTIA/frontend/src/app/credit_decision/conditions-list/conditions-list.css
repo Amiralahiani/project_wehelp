@@ -1,0 +1,94 @@
+.conditions-card {
+  max-width: 920px;
+  margin: 32px auto;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09);
+  border: 1px solid rgba(91, 111, 230, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+.conditions-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, #5b6fe6, #7c3aed);
+}
+
+.conditions-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+}
+
+.conditions-card mat-card-title mat-icon {
+  background: linear-gradient(145deg, rgba(91,111,230,0.16), rgba(91,111,230,0.06));
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+  display: grid;
+  place-items: center;
+  color: #5b6fe6;
+}
+
+.conditions-card mat-card-subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 0 24px 0;
+}
+
+.conditions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.condition-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
+  background: rgba(248, 250, 252, 0.5);
+  border-radius: 14px;
+  border: 1px solid rgba(91,111,230,0.14);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.condition-item:hover {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(91,111,230,0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(91,111,230,0.12);
+}
+
+.condition-number {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5b6fe6, #7c3aed);
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(91,111,230,0.35);
+}
+
+.condition-text {
+  color: #0f172a;
+  font-weight: 500;
+  line-height: 1.55;
+  flex: 1;
+}

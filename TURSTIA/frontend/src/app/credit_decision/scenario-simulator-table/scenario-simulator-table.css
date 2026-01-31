@@ -1,0 +1,107 @@
+.scenario-table-card {
+  max-width: 920px;
+  margin: 32px auto;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09);
+  border: 1px solid rgba(91,111,230,0.14);
+  position: relative;
+}
+
+.scenario-table-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, #5b6fe6, #7c3aed);
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.07);
+  background: rgba(248,250,252,0.45);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+th, td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(15,23,42,0.05);
+}
+
+th {
+  background: linear-gradient(180deg, rgba(91,111,230,0.08), rgba(124,58,237,0.05));
+  color: #0f172a;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.84rem;
+  letter-spacing: 0.6px;
+}
+
+tr:hover {
+  background: rgba(91,111,230,0.04);
+}
+
+.scenario-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.number, .percent, .currency {
+  text-align: right;
+  font-weight: 500;
+}
+
+.expected {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.verdict-badge {
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  min-width: 96px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+
+
+.verdict-badge.verdict-accept {
+  background: linear-gradient(135deg, #10b981, #34d399);
+  color: white;
+}
+
+.verdict-badge.verdict-reject {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  color: white;
+}
+
+.verdict-badge.verdict-tradeoff {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: white;
+}
+
+.verdict-badge.verdict-neutral {
+  background: linear-gradient(135deg, #94a3b8, #cbd5f5);
+  color: white;
+}
+
+
+.verdict-badge.APPROVED,
+.verdict-badge.ACCEPT  { background: linear-gradient(135deg, #10b981, #34d399) !important; color: white; }
+.verdict-badge.DECLINED,
+.verdict-badge.REJECTED { background: linear-gradient(135deg, #ef4444, #f87171); color: white; }
+.verdict-badge.REVIEW,
+.verdict-badge.MANUAL   { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; }

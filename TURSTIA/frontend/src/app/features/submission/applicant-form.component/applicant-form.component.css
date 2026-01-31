@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  padding: 32px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(102,126,234,0.12), transparent 55%),
+              radial-gradient(900px 500px at 90% 10%, rgba(118,75,162,0.10), transparent 55%),
+              linear-gradient(180deg, #f7f8fb 0%, #f3f5f9 100%);
+}
+
+.form-card {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 26px 28px 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.form-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(15,23,42,0.7);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(102,126,234,0.25);
+  background: #f8fafc;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.btn-primary {
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: #667eea;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.35);
+  cursor: pointer;
+}
+
+.btn-secondary {
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: 2px solid rgba(102,126,234,0.3);
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.btn-primary {
+  background: #667eea !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+
+button.btn-secondary {
+  border-radius: 10px !important;
+}
+
+.error-text {
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1.5px solid #e53935 !important;
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.1);
+}

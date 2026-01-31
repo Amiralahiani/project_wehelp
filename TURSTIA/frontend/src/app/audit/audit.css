@@ -1,0 +1,417 @@
+/* ===============================================
+   PROFESSIONAL AUDIT TRAIL - ENTERPRISE DESIGN
+   Design cohérent avec le formulaire Outcome
+   =============================================== */
+
+/* Fond global de la page */
+:host {
+  display: block;
+  padding: 28px;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(63, 81, 181, 0.12), transparent 55%),
+              radial-gradient(900px 500px at 90% 10%, rgba(0, 150, 136, 0.10), transparent 55%),
+              linear-gradient(180deg, #f7f8fb 0%, #f3f5f9 100%);
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+/* Card principale Audit */
+.audit-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 22px 22px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.audit-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 15px 40px rgba(15, 23, 42, 0.12),
+    0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+/* Liseré premium en haut */
+.audit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3f51b5 0%, #00bfa5 45%, #3f51b5 100%);
+  opacity: 0.9;
+}
+
+/* Header - Title */
+.audit-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.audit-card mat-card-title mat-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(63, 81, 181, 0.14), rgba(63, 81, 181, 0.06));
+}
+
+/* Subtitle */
+.audit-card mat-card-subtitle {
+  margin: 0 0 20px 0;
+  color: rgba(15, 23, 42, 0.68);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* Search Form */
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Material Form Fields */
+:host ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  height: 56px;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+:host ::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper {
+  background-color: #f1f5f9;
+}
+
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  background-color: #ffffff;
+}
+
+
+:host ::ng-deep .mat-mdc-form-field .mat-mdc-form-field-label {
+  color: rgba(15, 23, 42, 0.72);
+  font-weight: 500;
+}
+
+:host ::ng-deep .mat-mdc-input-element {
+  color: #0f172a;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* Search Icon Prefix */
+:host ::ng-deep .mat-mdc-form-field mat-icon[matPrefix] {
+  color: rgba(15, 23, 42, 0.5);
+  margin-right: 8px;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.action-buttons button {
+  margin-bottom: 20px;
+  height: 56px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+  color: #667eea;
+  box-shadow: 
+    0 2px 8px rgba(102, 126, 234, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  padding: 0 20px;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.action-buttons button:hover:not([disabled]) {
+  background: #ffffff;
+  border-color: #667eea;
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 16px rgba(102, 126, 234, 0.20),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  color: #5568d3;
+}
+
+.action-buttons button:active {
+  transform: translateY(0px);
+}
+
+.action-buttons button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(203, 213, 224, 0.3);
+  border-color: rgba(203, 213, 224, 0.4);
+}
+
+.action-buttons button mat-icon {
+  margin-right: 6px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: rgba(15, 23, 42, 0.65);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.loading mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #667eea;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Audit Results Container */
+.audit-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Individual Audit Event Card */
+.audit-event {
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.90) 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 
+    0 2px 8px rgba(15, 23, 42, 0.04),
+    0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.audit-event::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.audit-event:hover {
+  transform: translateX(4px);
+  box-shadow: 
+    0 4px 12px rgba(15, 23, 42, 0.08),
+    0 2px 6px rgba(15, 23, 42, 0.05);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+.audit-event:hover::before {
+  opacity: 1;
+}
+
+/* Event Lines */
+.event-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.event-line:not(:last-child) {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.event-line strong {
+  color: rgba(15, 23, 42, 0.70);
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.event-line span,
+.event-line:not(:has(strong)) {
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* Highlight Match pour la recherche */
+:host ::ng-deep .highlight {
+  background: linear-gradient(120deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.20) 100%);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #3f51b5;
+}
+
+/* No Result State */
+.no-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: rgba(15, 23, 42, 0.50);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  border: 2px dashed rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.5);
+  margin-top: 8px;
+}
+
+/* Badges pour Outcome */
+.event-line:has(strong:contains("Outcome")) span {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :host {
+    padding: 16px;
+  }
+  
+  .audit-card {
+    padding: 18px 16px 20px;
+    border-radius: 16px;
+  }
+  
+  .audit-card mat-card-title {
+    font-size: 16px;
+  }
+  
+  .audit-card mat-card-title mat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .action-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .action-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .event-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .event-line strong {
+    min-width: auto;
+  }
+  
+  .audit-event:hover {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .audit-results {
+    gap: 10px;
+  }
+  
+  .audit-event {
+    padding: 14px 16px;
+  }
+  
+  .event-line {
+    font-size: 13px;
+  }
+  
+  .event-line strong {
+    font-size: 12px;
+  }
+}
+
+/* Scrollbar personnalisé */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #5568d3 0%, #6a3f8f 100%);
+}
+
+/* Focus visible pour accessibilité */
+button:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}

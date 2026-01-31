@@ -1,0 +1,30 @@
+<div class="login-container">
+  <h2>Connexion</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+    <div>
+      <label>Email</label>
+      <input type="email" formControlName="email" />
+    </div>
+
+    <div class="password-field">
+        <label>Mot de passe</label>
+        <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+        />
+
+        <mat-icon
+            class="toggle-password"
+            (click)="togglePassword()">
+            {{ showPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+    </div>
+
+    <button type="submit">Se connecter</button>
+
+    <p style="color:red" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+  </form>
+</div>

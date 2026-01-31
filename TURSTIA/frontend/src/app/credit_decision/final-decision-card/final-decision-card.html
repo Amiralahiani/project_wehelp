@@ -1,0 +1,25 @@
+
+<mat-card class="decision-card" *ngIf="decision">
+  <mat-card-title>
+    <mat-icon [color]="decision.decision === 'APPROVED' ? 'primary' : 'warn'">gavel</mat-icon>
+    Décision finale
+  </mat-card-title>
+
+  <div class="decision-main">
+    <div class="decision-badge" [ngClass]="getDecisionClass(decision.decision)">
+    {{ decision.decision }}
+  </div>
+
+
+    <div class="decision-metrics">
+      <div class="metric">
+        <span class="label">Confiance</span>
+        <span class="value">{{ decision.confidence | percent:'1.0-1' }}</span>
+      </div>
+      <div class="metric">
+        <span class="label">Mode</span>
+        <span class="value">{{ decision.mode }}</span>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,201 @@
+
+
+/* fond global de la page (si tu mets ce style au niveau global) */
+:host {
+  display: block;
+  padding: 28px;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(63, 81, 181, 0.12), transparent 55%),
+              radial-gradient(900px 500px at 90% 10%, rgba(0, 150, 136, 0.10), transparent 55%),
+              linear-gradient(180deg, #f7f8fb 0%, #f3f5f9 100%);
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+/* Card principale */
+.outcome-card {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 22px 22px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* petit liseré premium en haut */
+.outcome-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3f51b5 0%, #00bfa5 45%, #3f51b5 100%);
+  opacity: 0.9;
+}
+
+/* Header (title/subtitle) */
+.outcome-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.outcome-card mat-card-title mat-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(63, 81, 181, 0.14), rgba(63, 81, 181, 0.06));
+}
+
+.outcome-card mat-card-subtitle {
+  margin: 0 0 18px 0;
+  color: rgba(15, 23, 42, 0.68);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* Form layout */
+.outcome-card form {
+  display: grid;
+  gap: 14px;
+}
+
+/* Champs full width + spacing */
+.full-width {
+  width: 100%;
+}
+
+/* Améliorer le rendu Material sans modifier HTML (si encapsulation) */
+:host ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+
+
+
+
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline {
+ 
+  border-radius: 12px;
+}
+
+/* Labels/inputs */
+:host ::ng-deep .mat-mdc-form-field .mat-mdc-form-field-label {
+  color: rgba(15, 23, 42, 0.72);
+}
+:host ::ng-deep .mat-mdc-input-element,
+:host ::ng-deep .mat-mdc-select-value {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Erreurs plus lisibles */
+:host ::ng-deep .mat-mdc-form-field-error {
+  font-size: 12px;
+  letter-spacing: 0.1px;
+}
+
+
+.submit-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 10px 20px rgba(63, 81, 181, 0.22);
+}
+
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  color: white  !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  background-color:#667eea !important;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+
+}
+
+.submit-btn:not([disabled]):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(63, 81, 181, 0.28) !important;
+  filter: saturate(1.05);
+}
+
+.submit-btn[disabled] {
+  background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.submit-btn mat-icon {
+  margin-right: 8px;
+}
+
+/* Audit Section */
+.Audit {
+  margin: 24px auto;
+  width: 780px;
+  text-align: center;
+}
+
+.Audit button {
+  width: 100%;
+  height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  color: #667eea;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  padding: 0 32px;
+}
+
+.Audit button:hover {
+  background: #ffffff;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.Audit button mat-icon {
+  margin-right: 8px;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+/* Responsive */
+@media (max-width: 640px) {
+  :host {
+    padding: 16px;
+  }
+  .outcome-card {
+    padding: 18px 16px 14px;
+    border-radius: 16px;
+  }
+  .Audit {
+    padding: 12px;
+    justify-content: stretch;
+  }
+  .Audit button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+

@@ -1,0 +1,56 @@
+
+<div class="radar-card">
+
+  <div class="radar-title">
+    <mat-icon>radar</mat-icon>
+    Similarity Radar
+  </div>
+
+  <div class="radar-subtitle">
+    Visual explanation of similar historical cases
+  </div>
+
+  <div class="radar-wrapper">
+    <svg width="400" height="400" viewBox="0 0 400 400" class="radar-svg">
+
+      <!-- Cercles -->
+      <circle cx="200" cy="200" r="50"  fill="none" stroke="#ddd"></circle>
+      <circle cx="200" cy="200" r="100" fill="none" stroke="#ddd"></circle>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#ddd"></circle>
+
+      <!-- Points -->
+      <circle *ngFor="let p of positionedPoints"
+              [attr.cx]="p.x"
+              [attr.cy]="p.y"
+              [attr.r]="p.type === 'CURRENT' ? 10 : 7"
+              [attr.fill]="getColor(p)"
+              stroke="white"
+              stroke-width="1.5"
+              (mouseenter)="onMouseEnter(p)"
+              (mouseleave)="onMouseLeave()">
+      </circle>
+
+    </svg>
+
+    <!-- Tooltip -->
+    <div *ngIf="hoveredPoint" class="tooltip">
+      <strong>Case:</strong> {{ hoveredPoint.case_id }}<br>
+      <strong>Score:</strong> {{ hoveredPoint.score | number:'1.3-3' }}<br>
+      <strong>Type:</strong> {{ hoveredPoint.type }}<br>
+      <strong>Decision:</strong> {{ hoveredPoint.decision || '-' }}
+    </div>
+  </div>
+
+  <div class="radar-legend">
+    <div class="legend-item">
+      <span class="legend-dot legend-current"></span> Current
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot legend-normal"></span> Normal
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot legend-fraud"></span> Fraud
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,163 @@
+header{
+  margin-bottom: 20px;
+}
+.navbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.92) 100%);
+  box-shadow: 
+    0 4px 20px rgba(15, 23, 42, 0.08),
+    0 1px 4px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Left section - Logo */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left .logo {
+  height: 59px;
+  width: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+.nav-left .logo:hover {
+  transform: scale(1.05);
+}
+
+/* Right section - Navigation buttons */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-right button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(102, 126, 234, 0.08);
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.nav-right button:hover {
+  background: rgba(102, 126, 234, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.nav-right button:active {
+  transform: translateY(0);
+}
+
+/* Logout button - style différent */
+.nav-right button.logout {
+  background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.nav-right button.logout:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #4a56c0 100%);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+  }
+  
+  .nav-right {
+    gap: 8px;
+  }
+  
+  .nav-right button {
+    padding: 0 12px;
+    font-size: 13px;
+    height: 36px;
+  }
+  
+  .nav-left .logo {
+    height: 36px;
+  }
+  
+  .footer {
+    padding: 0 16px;
+  }
+  
+  .footer p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    height: auto;
+    min-height: 64px;
+    flex-direction: column;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  
+  .nav-left {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-right {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .nav-right button {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 120px;
+  }
+  
+  .nav-right button.logout {
+    flex: 1 1 100%;
+  }
+}
+
+/* =============================================
+   ACCESSIBILITÉ
+   ============================================= */
+.navbar button:focus-visible,
+.footer:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}

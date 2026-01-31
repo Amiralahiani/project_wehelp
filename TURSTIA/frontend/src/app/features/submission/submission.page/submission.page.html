@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="form-card">
+        <div class="form-title" style="text-align:center;">Credit Application</div>
+        <div style="text-align:center; margin-bottom:20px;">
+          <a href="/expanded-submission" style="color: #667eea; text-decoration:none; font-weight:500;">
+            📋 Formulaire de Débriefing Complet →
+          </a>
+        </div>
+
+        <app-applicant-form [submitted]="formSubmitted"
+          (formChange)="onApplicantFormChange($event)"></app-applicant-form>
+
+        <app-loan-form [submitted]="formSubmitted" (formChange)="onLoanFormChange($event)"></app-loan-form>
+
+        <app-document-upload [submitted]="formSubmitted"
+          (documentsChange)="onDocumentsUpdate($event)"></app-document-upload>
+
+
+        <div class="form-actions">
+          <button class="btn-primary run-btn" (click)="onSubmit()">
+            Run Document Agent
+          </button>
+        </div>
+
+        <pre *ngIf="documentResult" style="margin-top:20px;">{{ documentResult | json }}</pre>
+      </div>

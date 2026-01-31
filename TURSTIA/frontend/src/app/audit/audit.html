@@ -1,0 +1,90 @@
+<mat-card class="audit-card">
+
+  <mat-card-title>
+    <mat-icon color="primary">list_alt</mat-icon>
+    Audit Trail
+  </mat-card-title>
+
+  <mat-card-subtitle>
+    View and filter audit events
+  </mat-card-subtitle>
+
+  <!-- SEARCH FORM -->
+  <form [formGroup]="auditForm" class="search-form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Case ID </mat-label>
+      <mat-icon matPrefix *ngIf="!auditForm.get('case_id')?.value">
+        search
+    </mat-icon>
+      <input matInput formControlName="case_id" placeholder="NEW-1107" >
+    </mat-form-field>
+
+    <div class="action-buttons">
+
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="sortByLossAmount()"
+        [disabled]="loading">
+
+        <mat-icon>sort</mat-icon>
+        Sort by loss amount
+      </button>
+
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="sortByDate()"
+        [disabled]="loading">
+
+        <mat-icon>sort</mat-icon>
+        Sort by date
+      </button>
+
+    </div>
+
+  </form>
+
+  <!-- LOADING -->
+  <div class="loading" *ngIf="loading">
+    <mat-icon>hourglass_top</mat-icon>
+    Loading audit logs...
+  </div>
+
+  <!-- RESULTS -->
+  <div class="audit-results" *ngIf="!loading && events.length > 0">
+
+    <mat-card class="audit-event" *ngFor="let e of events">
+
+      <div class="event-line">
+        <strong>Case ID:</strong> 
+        <span [innerHTML]="highlightMatch(e.case_id, auditForm.get('case_id')?.value)"></span>
+
+      </div>
+
+      <div class="event-line">
+        <strong>Outcome:</strong> {{ e.payload_update?.outcome }}
+      </div>
+
+      <div class="event-line"
+          *ngIf="(e.payload_update?.loss_amount ?? e.loss_amount) !== undefined 
+                  && (e.payload_update?.loss_amount ?? e.loss_amount) !== 0">
+        <strong>Loss Amount:</strong>
+        {{ e.payload_update?.loss_amount ?? e.loss_amount }}
+      </div>
+
+      <div class="event-line">
+        <strong>Timestamp:</strong>  {{ e.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <!-- NO RESULT -->
+  <div class="no-result" *ngIf="!loading && events.length === 0">
+    No audit events found.
+  </div>
+
+</mat-card>
